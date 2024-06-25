@@ -18,9 +18,15 @@ public class MovieController {
     @Autowired
     private MovieService service;
 
-    @GetMapping(value = "/findByDescription")
-    public ResponseEntity<List<MovieIdNameDTO>> findByDescription(@RequestParam(name = "description", defaultValue = "") String description){
-        List<MovieIdNameDTO> result = service.findByDescription(description);
+    @GetMapping(value = "/findByDescriptionSQL")
+    public ResponseEntity<List<MovieIdNameDTO>> findByDescriptionSQL(@RequestParam(name = "description", defaultValue = "") String description){
+        List<MovieIdNameDTO> result = service.findByDescriptionSQL(description);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping(value = "/findByDescriptionJPQL")
+    public ResponseEntity<List<MovieIdNameDTO>> findByDescriptionJPQL(@RequestParam(name = "description", defaultValue = "") String description){
+        List<MovieIdNameDTO> result = service.findByDescriptionJPQL(description);
         return ResponseEntity.ok(result);
     }
 }

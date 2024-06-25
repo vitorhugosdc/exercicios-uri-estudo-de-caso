@@ -15,8 +15,13 @@ public class MovieService {
     @Autowired
     private MovieRepository repository;
 
-    public List<MovieIdNameDTO> findByDescription(String description) {
-        List<MovieIdNameProjection> result = repository.findByDescription(description);
+    public List<MovieIdNameDTO> findByDescriptionSQL(String description) {
+        List<MovieIdNameProjection> result = repository.findByDescriptionSQL(description);
         return result.stream().map(x -> new MovieIdNameDTO(x)).collect(Collectors.toList());
+    }
+
+    public List<MovieIdNameDTO> findByDescriptionJPQL(String description) {
+        List<MovieIdNameDTO> result = repository.findByDescriptionJPQL(description);
+        return result;
     }
 }
