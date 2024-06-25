@@ -23,4 +23,10 @@ public class ProductController {
         List<ProductNameDTO> result = service.findProductsSQL(min, max, providerInitial);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping(value = "/findProductsJPQL")
+    public ResponseEntity<List<ProductNameDTO>> findProductsJPQL(@RequestParam(value = "min", defaultValue = "0") Integer min, @RequestParam(value = "max", defaultValue = "0") Integer max, @RequestParam(value = "initial", defaultValue = "") String providerInitial) {
+        List<ProductNameDTO> result = service.findProductsJPQL(min, max, providerInitial);
+        return ResponseEntity.ok(result);
+    }
 }

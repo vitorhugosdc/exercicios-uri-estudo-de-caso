@@ -17,4 +17,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE products.amount BETWEEN :min AND :max " +
             "AND providers.name LIKE CONCAT(UPPER(:providerInitial), '%')")
     public List<ProductNameProjection> findProductsSQL(Integer min, Integer max, String providerInitial);
+
+    @Query(value = "SELECT new com.devsuperior.uri2621.dto.ProductNameDTO(obj.name) " +
+            "FROM Product obj " +
+            "WHERE obj.amount BETWEEN :min AND :max " +
+            "AND obj.provider.name LIKE CONCAT(UPPER(:providerInitial), '%')")
+    public List<ProductNameProjection> findProductsJPQL(Integer min, Integer max, String providerInitial);
 }

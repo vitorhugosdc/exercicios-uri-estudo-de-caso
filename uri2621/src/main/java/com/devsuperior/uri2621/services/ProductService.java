@@ -21,4 +21,10 @@ public class ProductService {
         List<ProductNameProjection> result = repository.findProductsSQL(min, max, providerInitial);
         return result.stream().map(x -> new ProductNameDTO(x)).collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<ProductNameDTO> findProductsJPQL(Integer min, Integer max, String providerInitial) {
+        List<ProductNameProjection> result = repository.findProductsJPQL(min, max, providerInitial);
+        return result.stream().map(x -> new ProductNameDTO(x)).collect(Collectors.toList());
+    }
 }
